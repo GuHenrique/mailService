@@ -1,7 +1,7 @@
 
 class MailBox {
 
-    constructor(id, host, service, port, authUser, authPassword, folders){
+    constructor({c}){
         this.id = id
         this.host = host
         this.service = service
@@ -40,4 +40,4 @@ class MailBox {
     }
 }
 
-module.exports = new MailBox()
+module.exports =  MailBox

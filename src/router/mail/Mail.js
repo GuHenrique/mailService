@@ -1,6 +1,6 @@
 class Mail {
 
-    constructor(id, to, from, subject, text, mailbox) {
+    constructor({id, to, from, subject, text, mailbox}) {
         this.id = id
         this.to = to
         this.from = from

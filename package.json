@@ -1,20 +1,25 @@
 {
-  "name": "mailSender",
+  "name": "mailservice",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuHenrique/mailService.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GuHenrique/mailService/issues"
+  },
+  "homepage": "https://github.com/GuHenrique/mailService#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "jest": "^26.6.3",
-    "mongoose": "^5.11.9",
+    "mongoose": "^5.11.11",
     "nodemailer": "^6.4.17"
   }
 }
