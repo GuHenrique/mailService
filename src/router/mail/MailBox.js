@@ -29,6 +29,24 @@ class MailBox {
         }
     }
 
+    async search(){
+        try {
+            
+        } catch (error) {
+            
+        }
+    }
+
+    async searchById(){
+        let mailBox = { _id: this.id }
+
+        try {
+                        
+        } catch (error) {
+            
+        }
+    }
+
     async deleteById(){
         let mailBox = { _id: this.id }
 

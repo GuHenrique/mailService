@@ -34,7 +34,7 @@ class Mail {
         };
 
         try {
-
+            
         } catch (error) {
 
         }
