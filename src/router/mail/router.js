@@ -14,7 +14,7 @@ router.post('/mailbox', async (req, res) => {
         mailBox.create()
         */
         res.status(201)
-        res.json({"teste":"ok"})
+        res.json(data)
     }catch(error){
         Hermodr.error(logFile, error)
     }
@@ -71,7 +71,7 @@ router.post('/mail', async (req, res) => {
         let mail = new Mail(data)
         mail.create()
     } catch (error) {
-        
+        Hermodr.error(logFile, error)
     }
 })
 router.get('/mail', async (req, res) => {
@@ -81,7 +81,7 @@ router.get('/mail', async (req, res) => {
         let mail = new Mail(data)
         
     } catch (error) {
-        
+        Hermodr.error(logFile, error)
     }
 })
 
@@ -93,7 +93,7 @@ router.get('/mail/:id', async (req, res) => {
         let mail = new Mail({id})
         
     } catch (error) {
-        
+        Hermodr.error(logFile, error)
     }
 })
 
@@ -105,7 +105,7 @@ router.delete('/mail/:id', async (req, res) => {
         let mail = new Mail({id})
         mail.delete()
     } catch (error) {
-        
+        Hermodr.error(logFile, error)
     }
 })
 
