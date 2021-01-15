@@ -10,7 +10,6 @@ const mailBox = {
 }
 
 const mailBoxSchema = new mongoose.Schema(mailBox)
-
 const mailBoxModel = mongoose.model('MailBox', mailBoxSchema)
 
 

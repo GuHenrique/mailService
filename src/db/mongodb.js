@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
-
-
-try {
+const { Hermodr } = require('../utils/hermodr-logger')
+let logFile = 'mongodb.js'
 
   mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
-  });
+  }).then(() => {
+    Hermodr.log(logFile, "Banco Conectado")
+  }).catch((error) => {
 
-} catch (e) {}
+    Hermodr.error(logFile, error)
+  })

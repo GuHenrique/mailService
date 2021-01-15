@@ -56,6 +56,25 @@ class MailBox {
             
         }
     }
+
+    async update(){
+        let mailBox = {
+            id: this.id,
+            host: this.host,
+            service: this.service,
+            port: this.port,
+            authUser: this.authUser,
+            authPassword: this.authPassword,
+            folders: this.folders
+        }
+
+        try {
+            
+            return mailBox
+        } catch (error) {
+            
+        }
+    }
 }
 
 module.exports =  MailBox

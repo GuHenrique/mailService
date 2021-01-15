@@ -28,7 +28,7 @@ class Mail {
         }
     }
 
-    async deleteById() {
+    async delete() {
         let mail = {
             _id: this.id
         };
@@ -64,4 +64,4 @@ class Mail {
     }
 }
 
-module.exports = new Mail()
+module.exports = Mail
