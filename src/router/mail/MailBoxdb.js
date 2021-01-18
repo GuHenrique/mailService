@@ -1,25 +1,30 @@
 const mailBoxModel = require('../../db/mailBoxModel')
 
 module.exports = {
-    search(){
-       return mailBoxModel.find()
+    async search(pageNumber, nPerPage){
+        nPerPage = Number(nPerPage)
+        pageNumber = pageNumber > 0 ? ((pageNumber - 1) * nPerPage) : 0
+        
+       return await mailBoxModel.find()
+       .skip(pageNumber)
+       .limit(nPerPage)
     },
 
-    searchOne(id){
-        return mailBoxModel.find({_id:id})
+    async searchOne(id){
+        return await mailBoxModel.find(id)
     },
 
-    insert(mail){
-        return mailBoxModel.create(mail)
+    async insert(mail){
+        return await mailBoxModel.create(mail)
     },
 
-    update(id, data){
-        return mailBoxModel.updateOne({_id:id},{
+    async update(id, data){
+        return await mailBoxModel.updateOne({_id:id},{
             $set: data
         })
     },
 
-    remove(id){
-        return mailBoxModel.deleteOne({_id:id})
+    async remove(id){
+        return await mailBoxModel.deleteOne(id)
     }
 }

@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const MailBox = require('./MailBox')
+const mailboxdb = require('./MailBoxdb')
 const Mail = require('./Mail')
 const { Hermodr } = require('../../utils/hermodr-logger')
 let logFile = 'MAIL/ router.js'
@@ -9,12 +10,10 @@ router.post('/mailbox', async (req, res) => {
     let data = req.body
     
     try{
-        /*
+        
         let mailBox = new MailBox(data)
-        mailBox.create()
-        */
         res.status(201)
-        res.json(data)
+        res.json(await mailBox.create())
     }catch(error){
         Hermodr.error(logFile, error)
     }
@@ -22,9 +21,12 @@ router.post('/mailbox', async (req, res) => {
 
 router.get('/mailbox', async (req, res) => {
 
+    let pageNumber = req.query.page || 0
+    let nPerPage = req.query.registers || 10
+
     try {
-        let mailbox = new MailBox()
-        mailbox.search()
+        res.status(201)
+        res.json(await mailboxdb.search(pageNumber, nPerPage))
     } catch (error) {
         Hermodr.error(logFile, error)
     }
@@ -34,8 +36,8 @@ router.get('/mailbox/:id', async (req, res) => {
     let id = req.params.id
 
     try {
-        let mailbox = new MailBox({id})
-        mailbox.searchById()
+        let mailBox = new MailBox({"id":id})
+        res.json(await mailBox.searchById())
     } catch (error) {
         Hermodr.error(logFile, error)
     }
@@ -45,19 +47,20 @@ router.delete('/mailbox/:id', async (req, res) => {
     let id = req.params.id
     
     try {
-        let mailBox = new MailBox({id})
-        mailBox.deleteById()
+        let mailBox = new MailBox({"id":id})
+        res.json(await mailBox.deleteById())
     } catch (error) {
         Hermodr.error(logFile, error)
     }
 })
 
-router.put('/mailbox', async (req, res) => {
+router.put('/mailbox/:id', async (req, res) => {
     let data = req.body
-    
+    data.id = req.params.id
+
     try {
         let mailBox = new MailBox(data)
-        mailbox.update()
+        res.json(await mailBox.update())
     } catch (error) {
         Hermodr.error(logFile, error)
     }
