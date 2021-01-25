@@ -19,7 +19,7 @@ const mail = {
         - UNREAD
         - Draft - Rascunho
         - Sent
-        - Send
+        - Pending
     - Possiveis Attachments
         - Yes
         - No
