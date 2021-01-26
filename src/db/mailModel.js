@@ -7,11 +7,12 @@ const mail = {
     cco: String,
     subject: String,
     text: String,
-    mailBox: Array,
+    mailbox: Object,
     status: String,
     userSend: String,
     error: String,
-    attachment: String
+    attachment: String,
+    folder: String
 }
   /*
     - Possiveis Status
@@ -23,8 +24,8 @@ const mail = {
     - Possiveis Attachments
         - Yes
         - No
-    
   */
+
 const mailSchema = new mongoose.Schema(mail)
 const mailModel = mongoose.model('Mail', mailSchema)
 

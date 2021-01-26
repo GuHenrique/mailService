@@ -3,9 +3,9 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser')
 
-const { Hermodr, HermodrRoutes} = require('./src/utils/hermodr-logger')
-const mail = require('./src/router/mail/router')
-require('./src/db/mongodb')
+const { Hermodr, HermodrRoutes} = require('./utils/hermodr-logger')
+const mail = require('./router/mail/router')
+require('./db/mongodb')
 let logFile = 'Server.js'
 
 

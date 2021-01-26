@@ -1,23 +1,30 @@
 const mailModel = require('../../db/mailModel')
 
 module.exports = {
-    search(){
-       return mailModel.find()
+    async search(pageNumber, nPerPage){
+        nPerPage = Number(nPerPage)
+        pageNumber = pageNumber > 0 ? ((pageNumber - 1) * nPerPage) : 0
+        
+       return await mailModel.find()
+       .skip(pageNumber)
+       .limit(nPerPage)
     },
 
-    searchOne(id){
-        return mailModel.find({_id:id})
+    async searchOne(id){                                             
+        return await mailModel.findOne({_id:id})
     },
 
-    insert(mail){
-        return mailModel.create(mail)
+    async insert(mail){
+        return await mailModel.create(mail)
     },
 
-    update(){
-        //return mailModel.updateOne({},{})
+    async update(id, data){
+        return await mailModel.updateOne({_id:id},{
+            $set: data
+        })
     },
 
-    remove(id){
-        return mailModel.deleteOne({_id:id})
+    async remove(id){
+        return await mailModel.deleteOne({_id:id})
     }
 }

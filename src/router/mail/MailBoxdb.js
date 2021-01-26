@@ -11,7 +11,7 @@ module.exports = {
     },
 
     async searchOne(id){
-        return await mailBoxModel.find(id)
+        return await mailBoxModel.findOne({_id: id})
     },
 
     async insert(mail){

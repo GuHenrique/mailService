@@ -1,66 +1,89 @@
+const maildb = require('../mail/Maildb')
+const { Hermodr } = require('../../utils/hermodr-logger')
+let logFile = 'MAIL/ Mail.js'
+
 class Mail {
 
-    constructor({id, to, from, subject, text, mailbox}) {
+    constructor({id, from, to, cc, cco, subject, text, mailbox, status, userSend, error, attachment, folder}) {
         this.id = id
-        this.to = to
         this.from = from
+        this.to = to
+        this.cc = cc
+        this.cco = cco
         this.subject = subject
         this.text = text
         this.mailbox = mailbox
+        this.status = status
+        this.userSend = userSend
+        this.error = error
+        this.attachment = attachment
+        this.folder = folder
     }
 
     async create() {
         let mail = {
-            to: this.to,
             from: this.from,
+            to: this.to,
+            cc: this.cc,
+            cco: this.cco,
             subject: this.subject,
             text: this.text,
-            mailbox: this.mailbox
+            mailbox: this.mailbox,
+            status: this.status,
+            userSend: this.userSend,
+            error: this.error,
+            attachment: this.attachment,
+            folder: this.folder
         }
-
-
-        try {
-
-            this.validMail(this.to)
-            return mail
-        } catch (error) {
-
-        }
-    }
-
-    async delete() {
-        let mail = {
-            _id: this.id
-        };
 
         try {
             
+            return await maildb.insert(mail)
         } catch (error) {
+            Hermodr.error(logFile, error)
+        }
+    }
+        
+    async searchById() {
 
+        try {
+            return await maildb.searchOne(this.id)
+        } catch (error) {
+            Hermodr.error(logFile, error)
         }
     }
 
-    validMail(mail) {
-        var tester = /^[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+    async update() {
+        let mail = {
+            from: this.from,
+            to: this.to,
+            cc: this.cc,
+            cco: this.cco,
+            subject: this.subject,
+            text: this.text,
+            mailbox: this.mailbox,
+            status: this.status,
+            userSend: this.userSend,
+            error: this.error,
+            attachment: this.attachment,
+            folder: this.folder
+        }
 
-        if (!mail) return false;
+        try {
+            
+            return await maildb.update({_id: this.id}, mail)
+        } catch (error) {
+            Hermodr.error(logFile, error)
+        }
+    }
 
-        if (mail.length > 256) return false;
+    async deleteById() {
 
-        if (!tester.test(mail)) return false;
-
-        // Further checking of some things regex can't handle
-        var mailParts = email.split('@');
-        var account = mailParts[0];
-        var address = mailParts[1];
-        if (account.length > 64) return false;
-
-        var domainParts = address.split('.');
-        if (domainParts.some(function (part) {
-                return part.length > 63;
-            })) return false;
-
-        return true;
+        try {
+            return await maildb.remove(this.id)
+        } catch (error) {
+            Hermodr.error(logFile, error)
+        }
     }
 }
 

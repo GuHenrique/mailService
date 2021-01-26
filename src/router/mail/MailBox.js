@@ -1,6 +1,6 @@
 const mailboxdb = require('./MailBoxdb')
 const { Hermodr } = require('../../utils/hermodr-logger')
-let logFile = 'DB/ MailBox.js'
+let logFile = 'MAIL/ MailBox.js'
 
 class MailBox {
 
@@ -33,12 +33,9 @@ class MailBox {
     }
 
     async searchById() {
-        let mailBox = {
-            _id: this.id
-        }
 
         try {
-            return await mailboxdb.searchOne(mailBox)
+            return await mailboxdb.searchOne(this.id)
         } catch (error) {
             Hermodr.error(logFile, error)
         }
