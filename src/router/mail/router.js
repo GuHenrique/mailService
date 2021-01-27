@@ -39,6 +39,7 @@ router.get('/mailbox/:id', async (req, res) => {
 
     try {
         let mailBox = new MailBox({"id":id})
+        
         res.json(await mailBox.searchById())
     } catch (error) {
         Hermodr.error(logFile, error)

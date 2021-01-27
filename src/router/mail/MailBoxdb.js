@@ -14,11 +14,13 @@ module.exports = {
         return await mailBoxModel.findOne({_id: id})
     },
 
-    async insert(mail){
-        return await mailBoxModel.create(mail)
+    async insert(data){
+        data.dt_created = new Date()
+        return await mailBoxModel.create(data)
     },
 
     async update(id, data){
+        data.dt_updated = new Date()
         return await mailBoxModel.updateOne({_id:id},{
             $set: data
         })

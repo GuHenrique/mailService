@@ -12,7 +12,9 @@ const mail = {
     userSend: String,
     error: String,
     attachment: String,
-    folder: String
+    folder: String,
+    dt_created: Date,
+    dt_updated: Date
 }
   /*
     - Possiveis Status

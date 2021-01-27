@@ -6,7 +6,9 @@ const mailBox = {
     port: Number,
     authUser: String,
     authPassword: String,
-    folders: Array
+    folders: Array,
+    dt_created: Date,
+    dt_updated: Date
 }
 
 const mailBoxSchema = new mongoose.Schema(mailBox)
