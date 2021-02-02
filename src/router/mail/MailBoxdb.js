@@ -1,9 +1,10 @@
 const mailBoxModel = require('../../db/mailBoxModel')
 
 module.exports = {
-    async search(pageNumber, nPerPage){
+    async search(pageNumber, nPerPage, data){
         nPerPage = Number(nPerPage)
         pageNumber = pageNumber > 0 ? ((pageNumber - 1) * nPerPage) : 0
+        if(!data) data = {}
         
        return await mailBoxModel.find()
        .skip(pageNumber)
